@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sweet Letter • Special</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff5aa5;
+      --yellow:#ffd24a;
+      --ink:#4a1630;
+      --glass: rgba(255,255,255,.60);
+      --shadow: 0 18px 55px rgba(0,0,0,.18);
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Fredoka", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      overflow:auto;
+      background:
+        radial-gradient(1200px 650px at 50% 18%, rgba(255,255,255,.36), transparent 58%),
+        radial-gradient(900px 520px at 18% 72%, rgba(255,210,74,.28), transparent 60%),
+        radial-gradient(900px 520px at 82% 72%, rgba(255,135,193,.28), transparent 60%),
+        linear-gradient(180deg, #ff58a8 0%, #ff7dc1 40%, #ff6fb6 100%);
+    }
+
+    .sparkle{
+      position:fixed; inset:0; pointer-events:none; z-index:1;
+      opacity:.20;
+      background:
+        radial-gradient(2px 2px at 12% 20%, #fff, transparent 60%),
+        radial-gradient(2px 2px at 30% 72%, #fff, transparent 60%),
+        radial-gradient(2px 2px at 65% 35%, #fff, transparent 60%),
+        radial-gradient(2px 2px at 85% 55%, #fff, transparent 60%),
+        radial-gradient(2px 2px at 45% 15%, #fff, transparent 60%),
+        radial-gradient(2px 2px at 55% 82%, #fff, transparent 60%);
+      filter: blur(.2px);
+      animation: twinkle 3.2s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle{
+      from{ opacity:.16; transform:translateY(0); }
+      to{ opacity:.28; transform:translateY(-6px); }
+    }
+
+    /* ===== Emoji side columns (NEMPEL, TANPA BUBBLE) ===== */
+    .emoji-side{
+      position:fixed;
+      top:0; bottom:0;
+      width: min(72px, 14vw);
+      z-index:2;                 /* lebih ke background */
+      pointer-events:none;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:space-evenly;
+      padding: 90px 6px 40px;
+
+      opacity:.35;               /* soft, nyatu */
+      filter: none;
+    }
+    .emoji-side.left{ left: 6px; }
+    .emoji-side.right{ right: 6px; }
+
+    .emoji{
+      font-size: clamp(18px, 4vw, 26px);
+      text-align:center;
+      padding: 2px 0;
+
+      background: none;
+      border: none;
+      border-radius: 0;
+      backdrop-filter: none;
+
+      transform: rotate(var(--rot, 0deg));
+      opacity:.95;
+    }
+
+    /* content */
+    .wrap{
+      position:relative;
+      z-index:5;
+      padding: 22px 18px 140px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .topbar{
+      position:sticky;
+      top: 12px;
+      z-index:20;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(255,255,255,.70);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 34px rgba(0,0,0,.14);
+    }
+    .topbar a{
+      text-decoration:none;
+      color:var(--ink);
+      font-weight:900;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.70);
+      transition: transform .12s ease;
+    }
+    .topbar a:hover{ transform: translateY(-1px); }
+    .topbar .hint{ font-weight:800; opacity:.85; }
+
+    .hero{
+      margin: 18px 0 14px;
+      border-radius: 26px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.62);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      padding: 22px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(720px 280px at 50% 0%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(420px 240px at 15% 85%, rgba(255,210,74,.36), transparent 60%),
+        radial-gradient(420px 240px at 85% 85%, rgba(255,90,165,.34), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    h1{
+      margin:0 0 8px;
+      font-family:"Pacifico", cursive;
+      font-weight:400;
+      font-size: clamp(30px, 4.2vw, 54px);
+      text-align:center;
+      color:#7a1042;
+      text-shadow:0 4px 0 rgba(255,255,255,.55);
+      position:relative; z-index:1;
+    }
+    .sub{
+      margin:0;
+      text-align:center;
+      font-weight:800;
+      opacity:.9;
+      position:relative; z-index:1;
+    }
+
+    .section{
+      margin-top: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.66);
+      box-shadow: 0 14px 30px rgba(0,0,0,.10);
+      backdrop-filter: blur(10px);
+      padding: 16px 16px;
+    }
+    .section h2{
+      margin:0 0 8px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .section p{
+      margin:0;
+      line-height:1.9;
+      font-size: 16px;
+      opacity:.95;
+      white-space: pre-wrap;
+    }
+
+    /* LED popup */
+    .led{
+      position:fixed;
+      left:50%; top: 18%;
+      transform: translateX(-50%) scale(.96);
+      z-index:50;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+      color: #fff;
+      font-weight: 1000;
+      letter-spacing:.4px;
+      text-align:center;
+      opacity:0;
+      pointer-events:none;
+    }
+    .led .neon{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      text-shadow:
+        0 0 6px rgba(255,255,255,.45),
+        0 0 18px rgba(255,90,165,.55),
+        0 0 28px rgba(255,210,74,.45);
+    }
+    .led.show{
+      animation: ledPop 1.15s ease forwards;
+    }
+    @keyframes ledPop{
+      0%{ opacity:0; transform: translateX(-50%) translateY(10px) scale(.88); }
+      18%{ opacity:1; transform: translateX(-50%) translateY(0) scale(1.02); }
+      78%{ opacity:1; transform: translateX(-50%) translateY(0) scale(1.00); }
+      100%{ opacity:0; transform: translateX(-50%) translateY(-8px) scale(.96); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkle"></div>
+
+  <div class="emoji-side left" aria-hidden="true" id="emojiLeft"></div>
+  <div class="emoji-side right" aria-hidden="true" id="emojiRight"></div>
+
+  <div class="led" id="led" aria-hidden="true">
+    <span class="neon" id="ledText">💖 kamu lucu banget</span>
+  </div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a href="index.html">⬅️ Cover</a>
+      <div class="hint">for any side of you</div>
+      <a href="minigame.html">🧩 lil game</a>
+    </div>
+
+    <div class="hero">
+      <h1>long last your happiness</h1>
+      <p class="sub">dear my favorite</p>
+    </div>
+
+    <div class="section">
+      <h2>1) Kamu itu rumah</h2>
+      <p>
+Kaya kursi yang selalu mempersilahkanku untuk istirahat ketika lelah berdiri
+Bisa ajaa jadi sofa klo misal aku lagi pengen bersantai sambil makan es krim rasa oreo
+Mungkin bakal jadi meja makan yang menyediakan banyak hal untuk bisa menemani bosanku
+Atau jadi kulkas, pendingin marahku
+MicroWIFE untuk menghangatkan beku ku
+Jadi pel buat bersihin debu debu kehidupan?
+Yaa everything just relay on you. Especially me.
+I know you can do whatever you want but I want to appreciate you more on this special tiny day that we can celebrating us or you with our best.
+
+Kalau dunia lagi ramaaiii aku bisa jadi rumah kamu jugaakk. Tapi saat inii kita sedang diperantauann tanpa tau kapan waktunya untuk pulang kan?? Yang penting kita tau bahwa setidaknya kita masih memiliki rumahh.
+And l just knowingg bahwa ini udah masuk masaa masaa di mana fase pendewasaan itu nyataa. Mungkin ke depannya aku bakal jadi seseorang yang perlu sabarr dan kamu jadi orang yang perlu kuaatt. Kitaa klo gi berasa sakitt berarti kita lagi ditempa nggasi?? 
+Pahami ajaa bahwa kina sayang nda sendiiri kok. Kamu masih punya banyak hal. Hanya belum waktunya untuk bermanfaat. Aku sangat berharap dikesempatan inii, kita masih diberi kesempatan sama Tuhan untuk setidaknya hidup bahagia. Klo lelah yaa dikurangi saja. Seperti ituu 
+
+</p>
+    </div>
+
+    <div class="section">
+      <h2>2) Semua suka</h2>
+      <p>
+Aku suka cara kamu ketawa
+Aku suka cara kamu senyum
+Aku suka cara kamu berbicara
+Aku suka cara kamu berdiri
+Aku suka cara kamu duduk
+Aku suka cara kamu tidur
+Aku suka cara kamu melihat
+Aku suka cara kamu mendengar
+Aku suka cara kamu meraba
+Aku suka cara kamu marah
+Aku suka cara kamu sedih
+Aku suka cara kamu happy
+Aku suka cara kamu menangis
+Aku suka cara kamu makan
+Aku suka cara kamu minum
+Aku suka cara kamu bergurau
+Aku suka cara kamu tegas
+Aku suka cara kamu lemah
+Aku suka cara kamu manja
+Aku suka cara kamu mengatur
+Aku suka cara kamu ngambek
+Aku suka cara kamu lelah
+Aku suka cara kamu semangat
+Aku suka cara kamu antusias
+Aku suka cara kamu bingung
+Aku suka cara kamu berpikir
+Aku suka cara kamu menoleh
+Aku suka cara kamu serius
+Aku suka cara kamu meraba
+Aku suka cara kamu berlari
+Aku suka cara kamu berjalan
+Aku suka cara kamu jongkok
+Aku suka cara kamu berenang
+Aku suka cara kamu menulis
+Aku suka cara kamu mencintai
+Aku suka kamu
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>4) Summarize</h2>
+      <p>
+Aku nggak janji semuanya selalu perfect sesuai dengan kemauan kitaa, tpi aku usahain yang terbaik buat kita. 
+Happy Valentine’s love
+Aku sayang kamu, selalu.
+      </p>
+    </div>
+
+    <div style="height: 90px;"></div>
+  </div>
+
+  <script>
+    // ===== Emoji side full height =====
+    const emojiPool = ["💛","💖","🫶","🥺","✨","🌼","🧸","🐣","🌸","🍯","🍓","🎀","😚","😘","😍","🤭","💐","🧁","⭐️","🌙","💕","💝"];
+    function buildEmojiColumn(el, count=12){
+      el.innerHTML = "";
+      for(let i=0;i<count;i++){
+        const e = document.createElement("div");
+        e.className = "emoji";
+        e.textContent = emojiPool[Math.floor(Math.random()*emojiPool.length)];
+        e.style.setProperty("--rot", (Math.random()*14 - 7).toFixed(1)+"deg");
+        el.appendChild(e);
+      }
+    }
+    buildEmojiColumn(document.getElementById("emojiLeft"), 12);
+    buildEmojiColumn(document.getElementById("emojiRight"), 12);
+
+  </script>
+</body>
+</html>
